@@ -48,6 +48,24 @@ router.get('/:postID', async (req, res) => {
       res.send({ message: error });
     }
   });
+
+  //update post
+
+  router.patch('/:postId',async (req,res)=>{
+    try {
+        const updatePost= await Post.updateOne({ _id: req.params.postId },
+            {$set:{title:req.body.title}
+            })
+            res.json(updatePost)
+        
+    } catch (error) {
+        res.send({ message: error });
+        console.log("Data not found")
+
+        
+    }
+
+  })
     
 
 module.exports = router;
