@@ -23,11 +23,21 @@ router.post("/", async (req, res) => {
     res.json(savePost)
     
   } catch (error) {
-    res.json({messahe:error})
+    res.json({message:error})
     
   }
   
 })
+
+//specific post
+router.get('/:postID', async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.postID);
+      res.send(post);
+    } catch (error) {
+      res.send({ message: error });
+    }
+  });
 
 
 module.exports = router;
